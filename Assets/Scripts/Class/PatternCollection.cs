@@ -1,14 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
-
-public class PatternCollection : MonoBehaviour
+using System;
+[Serializable]
+public class PatternCollection
 {
-    public List<PatternItemInCollection> patterns;
+    public Dictionary<int, PatternItemInCollection> patterns;
+
+    public PatternCollection()
+    {
+        patterns = new Dictionary<int, PatternItemInCollection>();
+    }
 
     void Start()
     {
-        patterns = new List<PatternItemInCollection>();
+        
     }
 }

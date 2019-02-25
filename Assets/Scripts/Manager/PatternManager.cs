@@ -24,9 +24,8 @@ public class PatternManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
     
-    public List<PatternAttr> Patterns;
     public Transform PatternDisplayPanel;
-    public Transform PattrenPaintingPanel;
+    public Transform PatternPaintingPanel;
     public Transform PatternSamplePanel;
     public Transform DeleteButton;
 
@@ -44,19 +43,20 @@ public class PatternManager : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        for (int i = 0; i < Patterns.Count; i++)
+        for (int i = 0; i < PatternCollectionManager.Instance.Patterns.Count; i++)
         {
             var newPattern = Instantiate(PatternItemPrefab);
-            newPattern.GetComponent<PatternItem>().attr = Patterns[i];
+            newPattern.GetComponent<PatternItem>().attr = PatternCollectionManager.Instance.Patterns[i];
+            newPattern.GetComponent<PatternItem>().attr.PatternId = i;
 
             newPattern.transform.SetParent(PatternDisplayPanel, true);
             newPattern.SetActive(true);
 
             var newPatternSample = Instantiate(PatternItemInCollectionPrefab);
-            newPatternSample.GetComponent<Image>().sprite = Patterns[i].DisplayImage;
+            newPatternSample.GetComponent<Image>().sprite = PatternCollectionManager.Instance.Patterns[i].DisplayImage;
             newPatternSample.GetComponent<PatternItemInCollection>().Archetype = newPattern;
             newPatternSample.transform.SetParent(PatternSamplePanel, true);
-
+            
             StartCoroutine(AdjustTransInTheEndOfFrame(newPattern, newPatternSample));
 
         }
@@ -86,7 +86,7 @@ public class PatternManager : MonoBehaviour {
 
     bool InPaintingPanel(GameObject patternDrawable)
     {
-        return RectIntercept(PattrenPaintingPanel, patternDrawable.transform);
+        return RectIntercept(PatternPaintingPanel, patternDrawable.transform);
     }
 
     bool InDeletion(GameObject patternDrawable)
@@ -103,9 +103,13 @@ public class PatternManager : MonoBehaviour {
             newPattern.transform.position = patternDrawable.transform.position;
             newPattern.GetComponent<Image>().sprite = patternDrawable.GetComponent<Image>().sprite;
             newPattern.GetComponent<PatternItemInCollection>().IsAchetype = false;
-            newPattern.transform.SetParent(PattrenPaintingPanel, true);
+            newPattern.GetComponent<PatternItemInCollection>().originSize = ((RectTransform)PatternPaintingPanel.transform).rect.size;
+            newPattern.GetComponent<PatternItemInCollection>().localPos = Camera.main.WorldToScreenPoint(newPattern.transform.position) - Camera.main.WorldToScreenPoint(PatternPaintingPanel.position); //newPattern.transform.localPosition;
+            newPattern.GetComponent<PatternItemInCollection>().PatternId = patternDrawable.GetComponent<PatternItemInCollection>().Archetype.GetComponent<PatternItem>().attr.PatternId;
+            newPattern.transform.SetParent(PatternPaintingPanel, true);
             newPattern.name = "Drawing";
             newPattern.SetActive(true);
+            PatternCollectionManager.Instance.AddToCurrentCollection(newPattern);
         }
     }
 
@@ -114,6 +118,7 @@ public class PatternManager : MonoBehaviour {
         print(InDeletion(patternDrawable));
         if (InDeletion(patternDrawable) && !patternDrawable.GetComponent<PatternItemInCollection>().IsAchetype)
         {
+            PatternCollectionManager.Instance.RemoveFromCurrentCollection(patternDrawable);
             Destroy(patternDrawable);
         }
     }

@@ -8,6 +8,7 @@ using System;
 [Serializable]
 public class PatternAttr
 {
+    public int PatternId;
     public Sprite DisplayImage;
 }
 [RequireComponent(typeof(Image))]

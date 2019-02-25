@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/Preface.unity
     guid: fa011c69f57b9d34d94a511a819ca2f0
   - enabled: 1
-    path: Assets/Scenes/Drawing.unity
+    path: Assets/Scenes/Collections.unity
     guid: 4b417cf4531747d4f9c3a3c120be1d60
+  - enabled: 1
+    path: Assets/Scenes/Drawing.unity
+    guid: 45f427265b855c64f8b1dc543528c0d9
   m_configObjects: {}
