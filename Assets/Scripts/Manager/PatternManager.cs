@@ -9,6 +9,10 @@ public class PatternManager : MonoBehaviour {
     public List<PatternAttr> Patterns;
     public Transform PatternDisplayPanel;
     public Transform PattrenPaintingPanel;
+    public Transform PatternSamplePanel;
+    public Transform DeleteButton;
+
+
     public GameObject PatternItemPrefab;
     public GameObject PatternItemInCollectionPrefab;
     public static PatternManager Instance
@@ -50,7 +54,7 @@ public class PatternManager : MonoBehaviour {
             var newPatternSample = Instantiate(PatternItemInCollectionPrefab);
             newPatternSample.GetComponent<Image>().sprite = Patterns[i].DisplayImage;
             newPatternSample.GetComponent<PatternItemInCollection>().Archetype = newPattern;
-            newPatternSample.transform.SetParent(PattrenPaintingPanel, true);
+            newPatternSample.transform.SetParent(PatternSamplePanel, true);
 
             StartCoroutine(AdjustTransInTheEndOfFrame(newPattern, newPatternSample));
 
@@ -65,11 +69,15 @@ public class PatternManager : MonoBehaviour {
         Vector2 bPosition = new Vector2(b.position.x, b.position.y);
         Vector2 bLeftTop = bPosition + new Vector2(((RectTransform)b).rect.xMin, ((RectTransform)b).rect.yMin);
         Vector2 bRightBottom = bPosition + new Vector2(((RectTransform)b).rect.xMax, ((RectTransform)b).rect.yMax);
-
-        print(aLeftTop);
-        print(aRightBottom);
-        print(bLeftTop);
-        print(bRightBottom);
+        //Vector3[] v = new Vector3[4];
+        //((RectTransform)b).GetWorldCorners(v);
+        //for (int i =0; i < 4; i++)
+            //print(v[i]);
+        //print(aLeftTop);
+        //print(aRightBottom);
+        //print(b.position);
+        //print(bLeftTop);
+        //print(bRightBottom);
         if (aLeftTop.y >= bRightBottom.y)
             return false;
         if (aLeftTop.x >= bRightBottom.x)
@@ -89,14 +97,14 @@ public class PatternManager : MonoBehaviour {
 
     bool InDeletion(GameObject patternDrawable)
     {
-        return false;
+        return RectIntercept(DeleteButton, patternDrawable.transform);
     }
 
     public void DrawPaintingPanel(GameObject patternDrawable)
     {
         if (InPaintingPanel(patternDrawable))
         {
-            
+
             var newPattern = Instantiate(PatternItemInCollectionPrefab);
             newPattern.transform.position = patternDrawable.transform.position;
             newPattern.GetComponent<Image>().sprite = patternDrawable.GetComponent<Image>().sprite;
@@ -105,9 +113,14 @@ public class PatternManager : MonoBehaviour {
             newPattern.name = "Drawing";
             newPattern.SetActive(true);
         }
-        if (InDeletion(patternDrawable))
-        {
+    }
 
+    public void CheckDeletion(GameObject patternDrawable)
+    {
+        print(InDeletion(patternDrawable));
+        if (InDeletion(patternDrawable) && !patternDrawable.GetComponent<PatternItemInCollection>().IsAchetype)
+        {
+            Destroy(patternDrawable);
         }
     }
 

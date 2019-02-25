@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHandler {
+public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler {
     public bool IsAchetype = true;
     public bool draggable;
     public GameObject Archetype;
@@ -15,12 +15,26 @@ public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHand
         }
     }
 
+    public void OnBeginDrag(PointerEventData eventData)
+    {
+        if (!IsAchetype)
+        {
+            transform.parent = PatternManager.Instance.PatternSamplePanel;
+        }
+    }
+
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (draggable && IsAchetype)
+        if (draggable)
         {
-            PatternManager.Instance.DrawPaintingPanel(gameObject);    
-            transform.position = Archetype.transform.position;
+            if (IsAchetype)
+            {
+                PatternManager.Instance.DrawPaintingPanel(gameObject);
+                transform.position = Archetype.transform.position;
+            } else {
+                PatternManager.Instance.CheckDeletion(gameObject);
+                transform.parent = PatternManager.Instance.PattrenPaintingPanel;
+            }
         }
     }
 
