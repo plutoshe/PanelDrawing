@@ -11,7 +11,6 @@ public class PatternAttr
     public Sprite DisplayImage;
 }
 [RequireComponent(typeof(Image))]
-[RequireComponent(typeof(Button))]
 public class PatternItem : MonoBehaviour
 {
     public PatternAttr attr;
