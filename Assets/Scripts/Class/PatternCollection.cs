@@ -1,11 +1,14 @@
-﻿using System;
+﻿using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using UnityEngine;
 
-namespace Assets.Scripts
+
+public class PatternCollection : MonoBehaviour
 {
-    class PatternCollection
+    public List<PatternItemInCollection> patterns;
+
+    void Start()
     {
+        patterns = new List<PatternItemInCollection>();
     }
 }

@@ -4,17 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class PatternManager : MonoBehaviour {
-
     static PatternManager _instance;
-    public List<PatternAttr> Patterns;
-    public Transform PatternDisplayPanel;
-    public Transform PattrenPaintingPanel;
-    public Transform PatternSamplePanel;
-    public Transform DeleteButton;
-
-
-    public GameObject PatternItemPrefab;
-    public GameObject PatternItemInCollectionPrefab;
     public static PatternManager Instance
     {
         get
@@ -33,6 +23,17 @@ public class PatternManager : MonoBehaviour {
             Destroy(gameObject);
         DontDestroyOnLoad(gameObject);
     }
+    
+    public List<PatternAttr> Patterns;
+    public Transform PatternDisplayPanel;
+    public Transform PattrenPaintingPanel;
+    public Transform PatternSamplePanel;
+    public Transform DeleteButton;
+
+
+    public GameObject PatternItemPrefab;
+    public GameObject PatternItemInCollectionPrefab;
+    
     private IEnumerator AdjustTransInTheEndOfFrame(GameObject obj, GameObject adjust_obj)
     {
         yield return new WaitForEndOfFrame();
@@ -63,21 +64,14 @@ public class PatternManager : MonoBehaviour {
 
     bool RectIntercept(Transform a, Transform b)
     {
-        Vector2 aPosition = new Vector2(a.position.x, a.position.y);
-        Vector2 aLeftTop = aPosition + new Vector2(((RectTransform)a).rect.xMin, ((RectTransform)a).rect.yMin);
-        Vector2 aRightBottom = aPosition + new Vector2(((RectTransform)a).rect.xMax, ((RectTransform)a).rect.yMax);
-        Vector2 bPosition = new Vector2(b.position.x, b.position.y);
-        Vector2 bLeftTop = bPosition + new Vector2(((RectTransform)b).rect.xMin, ((RectTransform)b).rect.yMin);
-        Vector2 bRightBottom = bPosition + new Vector2(((RectTransform)b).rect.xMax, ((RectTransform)b).rect.yMax);
-        //Vector3[] v = new Vector3[4];
-        //((RectTransform)b).GetWorldCorners(v);
-        //for (int i =0; i < 4; i++)
-            //print(v[i]);
-        //print(aLeftTop);
-        //print(aRightBottom);
-        //print(b.position);
-        //print(bLeftTop);
-        //print(bRightBottom);
+        Vector3[] v = new Vector3[4];
+        ((RectTransform)a).GetWorldCorners(v);
+        Vector2 aLeftTop = v[0];
+        Vector2 aRightBottom = v[2];
+        ((RectTransform)b).GetWorldCorners(v);
+        Vector2 bLeftTop = v[0];
+        Vector2 bRightBottom = v[2];
+
         if (aLeftTop.y >= bRightBottom.y)
             return false;
         if (aLeftTop.x >= bRightBottom.x)
