@@ -42,6 +42,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   textureName: triangle
   sample: {fileID: 2100000, guid: dc4d3f30c2203234ca2f9e227178a320, type: 2}
+  pattern: {fileID: 0}
   startY: 100
   startX: 100
 --- !u!114 &114782630559682416

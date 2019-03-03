@@ -344,7 +344,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 206637881}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114671226650059700, guid: 035f10fd6ccd9c84e9d3c8b7733211c6,
+          type: 2}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Credits
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &206637881
@@ -550,7 +562,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 465979242}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114671226650059700, guid: 035f10fd6ccd9c84e9d3c8b7733211c6,
+          type: 2}
+        m_MethodName: LoadScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: About
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &465979242
@@ -587,6 +611,48 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 465979239}
   m_CullTransparentMesh: 0
+--- !u!1001 &603380299
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 320.53812
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 824.2067
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -47.082836
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970591247677060, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 7aba524319624fe4ea7d2a953f4fe6f6, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &856434910
 GameObject:
   m_ObjectHideFlags: 0
@@ -1027,48 +1093,6 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1547424313}
   m_CullTransparentMesh: 0
---- !u!1001 &1568839295
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 375
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 661
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 15
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4755781263190020, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 035f10fd6ccd9c84e9d3c8b7733211c6, type: 2}
-  m_IsPrefabAsset: 0
 --- !u!1 &1872795147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,7 +1335,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Drawing
+          m_StringArgument: Collections
           m_BoolArgument: 0
         m_CallState: 1
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -1510,7 +1534,7 @@ CanvasRenderer:
   m_CullTransparentMesh: 0
 --- !u!114 &2128062867 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 114671226650059700, guid: 035f10fd6ccd9c84e9d3c8b7733211c6,
+  m_CorrespondingSourceObject: {fileID: 114096435610936610, guid: 7aba524319624fe4ea7d2a953f4fe6f6,
     type: 2}
-  m_PrefabInternal: {fileID: 1568839295}
+  m_PrefabInternal: {fileID: 603380299}
   m_Script: {fileID: 11500000, guid: 6ce4875cd0073e5459d67f187c191cce, type: 3}

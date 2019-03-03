@@ -34,7 +34,7 @@ public class PatternCollectionManager : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-		
+        print("pattern manager start");
 	}
 	
 	// Update is called once per frame
