@@ -102,6 +102,15 @@ public class PatternManager : MonoBehaviour {
     //    return RectIntercept(DeleteButton, patternDrawable.transform);
     //}
 
+    Vector3 GetTopLeftOfCanvasObject(GameObject obj)
+    {
+        float minX = obj.GetComponent<RectTransform>().position.x + obj.GetComponent<RectTransform>().rect.xMin;
+        float maxY = obj.GetComponent<RectTransform>().position.y + obj.GetComponent<RectTransform>().rect.yMax;
+        float z = obj.GetComponent<RectTransform>().position.z;
+
+        return new Vector3(minX, maxY, z);
+    }
+
     public void DrawPaintingPanel(GameObject patternDrawable)
     {
         if (InPaintingPanel(patternDrawable))
@@ -112,7 +121,10 @@ public class PatternManager : MonoBehaviour {
             newPattern.GetComponent<Image>().sprite = patternDrawable.GetComponent<Image>().sprite;
             newPattern.GetComponent<PatternItemInCollection>().IsAchetype = false;
             newPattern.GetComponent<PatternItemInCollection>().originSize = ((RectTransform)PatternPaintingPanel.transform).rect.size;
-            newPattern.GetComponent<PatternItemInCollection>().localPos = Camera.main.WorldToScreenPoint(newPattern.transform.position) - Camera.main.WorldToScreenPoint(PatternPaintingPanel.position); //newPattern.transform.localPosition;
+            newPattern.GetComponent<PatternItemInCollection>().localPos = 
+                Camera.main.WorldToViewportPoint(newPattern.transform.position) - 
+                Camera.main.WorldToViewportPoint(PatternPaintingPanel.position); //newPattern.transform.localPosition;
+            
             newPattern.GetComponent<PatternItemInCollection>().PatternId = patternDrawable.GetComponent<PatternItemInCollection>().Archetype.GetComponent<PatternItem>().attr.PatternId;
             newPattern.transform.SetParent(PatternPaintingPanel, true);
             newPattern.name = "Drawing";
@@ -134,11 +146,16 @@ public class PatternManager : MonoBehaviour {
 
     public void DeleteSelectedItemAction()
     {
+        PatternCollectionManager.Instance.RemoveFromCurrentCollection(selectedPatternItem.gameObject);
         Destroy(selectedPatternItem.gameObject);
     }
 
     public void FinishEditingAction()
     {
+        selectedPatternItem.GetComponent<PatternItemInCollection>().localPos =
+                Camera.main.WorldToViewportPoint(selectedPatternItem.transform.position) -
+                Camera.main.WorldToViewportPoint(PatternPaintingPanel.position);
+        PatternCollectionManager.Instance.UpdateCurrentCollection(selectedPatternItem.gameObject);
         selectedPatternItem.transform.GetComponent<PatternItemInCollection>().OnUnSelection();
         selectedPatternItem = null;
     }
