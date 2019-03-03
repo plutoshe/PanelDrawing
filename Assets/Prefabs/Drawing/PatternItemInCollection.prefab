@@ -44,6 +44,10 @@ MonoBehaviour:
   IsAchetype: 1
   draggable: 1
   Archetype: {fileID: 0}
+  originSize: {x: 0, y: 0}
+  localPos: {x: 0, y: 0, z: 0}
+  PatternId: 0
+  outlineMaterial: {fileID: 2100000, guid: d3d994736afb9ae4cacd387f962ebcc6, type: 2}
 --- !u!114 &114176588975200718
 MonoBehaviour:
   m_ObjectHideFlags: 1

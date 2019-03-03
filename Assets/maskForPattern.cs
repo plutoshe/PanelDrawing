@@ -73,7 +73,9 @@ public class maskForPattern : MonoBehaviour {
 
         //AssetDatabase.CreateAsset(myimage, rootPath + "/" + image.name + "/" + metaData.name + ".PNG");
         File.WriteAllBytes(Application.dataPath + "/233.PNG", pngData);
+#if UNITY_EDITOR
         AssetDatabase.Refresh();
+#endif
 
         fileData = File.ReadAllBytes(
             Application.dataPath + "/233.PNG");
