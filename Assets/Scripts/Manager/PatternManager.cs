@@ -61,6 +61,12 @@ public class PatternManager : MonoBehaviour {
             StartCoroutine(AdjustTransInTheEndOfFrame(newPattern, newPatternSample));
 
         }
+
+        PatternCollectionManager.Instance.DrawCollectionOnPanel(
+            PatternPaintingPanel,
+            PatternCollectionManager.Instance.patternCollections[PatternCollectionManager.Instance.currentCollectionID], true);
+        
+
         DeleteButton.GetComponent<Button>().onClick.AddListener(DeleteSelectedItemAction);
         FinishEditingButton.GetComponent<Button>().onClick.AddListener(FinishEditingAction);
     }

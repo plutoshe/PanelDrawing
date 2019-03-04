@@ -7,6 +7,8 @@ using System;
 
 [Serializable]
 public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHandler, IBeginDragHandler {
+
+    public bool IsEditing = true;
     public bool IsAchetype = true;
     public bool draggable;
     public GameObject Archetype;
@@ -17,7 +19,7 @@ public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHand
 
     bool CouldDrag()
     {
-        return IsAchetype && !PatternManager.Instance.OnEditingPattern() ||
+        return IsEditing && IsAchetype && !PatternManager.Instance.OnEditingPattern() ||
             PatternManager.Instance.selectedPatternItem == transform;
     }
     public void OnDrag(PointerEventData eventData)
@@ -34,9 +36,15 @@ public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHand
     }
 
     public void Set(PatternItemInCollection p) {
+         
+        IsAchetype = p.IsAchetype;
         PatternId = p.PatternId;
         localPos = new Vector3(p.localPos.x, p.localPos.y, p.localPos.z);
         originSize = new Vector2(p.originSize.x, p.originSize.y);
+        draggable = p.draggable;
+        Archetype = p.Archetype;
+    
+    
     }
 
     public void OnBeginDrag(PointerEventData eventData)
@@ -104,7 +112,7 @@ public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHand
     void OnSelection()
     {
         //print("!!!" + PatternManager.Instance.OnEditingPattern());
-        if (!PatternManager.Instance.OnEditingPattern())
+        if (IsEditing && !PatternManager.Instance.OnEditingPattern())
             ToggleSelectItem();
     }
 

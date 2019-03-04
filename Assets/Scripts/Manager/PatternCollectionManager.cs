@@ -31,36 +31,39 @@ public class PatternCollectionManager : MonoBehaviour {
     }
     public List<PatternAttr> Patterns;
     public List<PatternCollection> patternCollections;
-    public PatternCollection currentCollection;
+    public int currentCollectionID;
     public GameObject PatternPrefab;
+    
 
     // Use this for initialization
     void Start () {
         print("pattern manager start");
-	}
+        currentCollectionID = -1;
+
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if (Input.GetKeyDown(KeyCode.U))
+		if (Input.GetKeyDown(KeyCode.U) && currentCollectionID >= 0 && currentCollectionID < patternCollections.Count)
         {
-            print(currentCollection.patterns.Count);
+            print(patternCollections[currentCollectionID].patterns.Count);
         }
 	}
 
     public void AddToCurrentCollection(GameObject pattern)
     {
-        if (currentCollection != null)
+        if (currentCollectionID >= 0 && currentCollectionID < patternCollections.Count)
         {
-            currentCollection.patterns.Add(pattern.GetInstanceID(), pattern.GetComponent<PatternItemInCollection>());
+            patternCollections[currentCollectionID].patterns.Add(pattern.GetInstanceID(), pattern.GetComponent<PatternItemInCollection>());
         }
     }
 
 
     public void RemoveFromCurrentCollection(GameObject pattern)
     {
-        if (currentCollection != null)
+        if (currentCollectionID >= 0 && currentCollectionID < patternCollections.Count)
         {
-            currentCollection.patterns.Remove(pattern.GetInstanceID());
+            patternCollections[currentCollectionID].patterns.Remove(pattern.GetInstanceID());
         }
     }
 
@@ -76,11 +79,8 @@ public class PatternCollectionManager : MonoBehaviour {
     {
         print("newCollection");
 
-        currentCollection = new PatternCollection();
-        print(currentCollection.patterns.Count);
-       
-        patternCollections.Add(currentCollection);
-        print(currentCollection.patterns.Count);
+        patternCollections.Add(new PatternCollection());
+        currentCollectionID = patternCollections.Count - 1;
     }
 
     public Vector3 GetTopLeftOfCanvasObject(GameObject obj)
@@ -92,7 +92,7 @@ public class PatternCollectionManager : MonoBehaviour {
         return new Vector3(minX, maxY, z);
     }
 
-    public void DrawCollectionOnPanel(Transform panel, PatternCollection collection)
+    public void DrawCollectionOnPanel(Transform panel, PatternCollection collection, bool editable)
     {
         while (panel.childCount > 0) Destroy(panel.GetChild(0).gameObject);
         foreach (var kv in collection.patterns)
@@ -118,8 +118,6 @@ public class PatternCollectionManager : MonoBehaviour {
                 Camera.main.ViewportToWorldPoint(
                 posOnPanel +
                 Camera.main.WorldToViewportPoint(panel.position));
-            //newPattern.transform.localPosition = posOnPanel;
-
             newPattern.GetComponent<PatternItemInCollection>().Set(kv.Value);
             print(newPattern.transform.position);
             newPattern.SetActive(true);
@@ -133,6 +131,19 @@ public class PatternCollectionManager : MonoBehaviour {
                    rt.sizeDelta.x * xRatio,
                    rt.sizeDelta.y * yRatio);
             print("size:" + rt.sizeDelta);
+            newPattern.GetComponent<PatternItemInCollection>().IsEditing = editable;
         }
+    }
+
+
+    public void SelectionForCurrentCollection(DrawingCollection selection)
+    {
+        currentCollectionID = selection.collectionID;
+    }
+
+
+    public bool isSelecting()
+    {
+        return currentCollectionID >= 0;
     }
 }

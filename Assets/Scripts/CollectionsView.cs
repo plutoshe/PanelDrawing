@@ -11,14 +11,14 @@ public class CollectionsView : MonoBehaviour {
     {
         yield return new WaitForEndOfFrame();
         PatternCollectionManager.Instance.DrawCollectionOnPanel(
-                panel, coll);
+                panel, coll, false);
     }
     void Start () {
         for (int i = 0; i < PatternCollectionManager.Instance.patternCollections.Count; i++)
         {
             print(PatternCollectionManager.Instance.patternCollections[i].patterns.Count);
             var currentColl = Instantiate(CollectionPrefab);
-            currentColl.GetComponent<DrawingCollection>().collection = PatternCollectionManager.Instance.patternCollections[i];
+            currentColl.GetComponent<DrawingCollection>().collectionID = i;
             currentColl.transform.SetParent(transform, true);
             var rt = currentColl.GetComponent<RectTransform>();
             rt.sizeDelta = PanelSize;
