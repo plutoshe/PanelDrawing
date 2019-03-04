@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Animation03.unity
     guid: 58b5081b4732d794fbad57b7e2e3c334
+  - enabled: 1
+    path: Assets/Scenes/Boards.unity
+    guid: 07328968a2517254986b1dfda1b62e2a
   m_configObjects: {}
