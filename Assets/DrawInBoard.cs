@@ -11,7 +11,7 @@ public class DrawInBoard : MonoBehaviour
     private int i;
     public GameObject tf;
     float DyingPanelMiddleX;
-    float xMin, xMax, yMin, yMax;
+    public float xMin, xMax, yMin, yMax;
 
     void Start()
     {
@@ -41,7 +41,7 @@ public class DrawInBoard : MonoBehaviour
 
     bool posInDyingPanel(Vector3 pos)
     { 
-        return pos.x >= xMin && pos.x <= xMax && pos.y >= yMin && pos.y <= yMax;
+        return pos.x >= xMin - 0.1 && pos.x <= xMax + 0.1 && pos.y >= yMin - 0.1 && pos.y <= yMax + 0.1;
 
     }
 
@@ -60,8 +60,8 @@ public class DrawInBoard : MonoBehaviour
                 currentColor.a = 0.5f;
                 line.startColor = currentColor;
                 line.endColor = currentColor;//new Vector4(0.3f, 0.4f, 0.6f, 0.3f);
-                line.startWidth = 1;
-                line.endWidth = 1;
+                line.startWidth = 8.45f;
+                line.endWidth = 8.45f;
                 clone.SetActive(true);
                 i = 0;
             }

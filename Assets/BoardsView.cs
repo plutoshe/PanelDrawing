@@ -16,14 +16,13 @@ public class BoardsView : MonoBehaviour {
     void Start () {
         for (int i = 0; i < BoardManager.Instance.Boards.Count; i++)
         {
-            print(PatternCollectionManager.Instance.patternCollections[i].patterns.Count);
-            var currentColl = Instantiate(BoardPrefab);
-            currentColl.GetComponent<DrawingBoard>().boardID = i;
-            currentColl.transform.SetParent(transform, true);
-            var rt = currentColl.GetComponent<RectTransform>();
+            var currentBoard = Instantiate(BoardPrefab);
+            currentBoard.GetComponent<DrawingBoard>().boardID = i;
+            currentBoard.transform.SetParent(transform, true);
+            var rt = currentBoard.GetComponent<RectTransform>();
             rt.sizeDelta = PanelSize;
-            currentColl.SetActive(true);
-            StartCoroutine(UpdateBoard(currentColl.transform, PatternCollectionManager.Instance.patternCollections[i]));
+            currentBoard.SetActive(true);
+            StartCoroutine(UpdateBoard(currentBoard.transform, PatternCollectionManager.Instance.patternCollections[i]));
         }
     }
 	

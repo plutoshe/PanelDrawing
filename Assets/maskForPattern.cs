@@ -17,31 +17,28 @@ public class maskForPattern : MonoBehaviour {
         var fileData = File.ReadAllBytes(
             Application.dataPath + "/1.jpg");
         //"/Textures/Background/BGForPreface.png");
-        var tex = new Texture2D(650, 1234);
+        var tex = new Texture2D(650, 1134);
 
         tex.LoadImage(fileData);
-        
-        //Sprite metaData = GetComponent<Image>().sprite;
-        //var mainTexture = GetComponent<Image>().mainTexture;
-        //Texture2D myImage = new Texture2D(mainTexture.width, mainTexture.height, TextureFormat.RGBA32, false);
-        //var myImage = new Texture2D((int)metaData.rect.width, (int)metaData.rect.height);
-        //var pixels = metaData.texture.GetPixels((int)metaData.textureRect.x,
-        //                                        (int)metaData.textureRect.y,
-        //                                        (int)metaData.textureRect.width,
-        //                                        (int)metaData.textureRect.height);
-        //myImage.SetPixels(pixels);
-        //myImage.Apply();
-
-
         var shader1 = Shader.Find("ImageEffect/MaskIcon");
-        print(GetComponent<Image>().material.name);
         GetComponent<Image>().material.shader = shader1;
-       
-        int m_width = (int)((RectTransform)transform).rect.width;
-        int m_height = (int)((RectTransform)transform).rect.height;
+
+        Camera camera = GameObject.Find("Main Camera").GetComponent<Camera>();
+        Vector3 rectPos = camera.WorldToScreenPoint(transform.position);
+        RectTransform rect = GetComponent<RectTransform>();
+        var xMin = rectPos.x - rect.pivot.x * rect.rect.width;
+        var yMin = rectPos.y - rect.pivot.y * rect.rect.height;
+
+        rectPos = camera.WorldToScreenPoint(transform.parent.position);
+        rect = GetComponent<RectTransform>();
+        var pxMin = rectPos.x - rect.pivot.x * rect.rect.width;
+        var pyMin = rectPos.y - rect.pivot.y * rect.rect.height;
+        startX = (int)(xMin - pxMin);
+        startY = (int)(yMin - pyMin);
+        int m_width = (int)GetComponent<RectTransform>().rect.width;
+        int m_height = (int)GetComponent<RectTransform>().rect.height;
         Texture2D myTexture2D = new Texture2D(m_width, m_height);
-        print(m_width);
-        print(m_height);
+
         for (int y = startY; y < startY + m_height; y++)//Y轴像素
         {
             for (int x = startX; x < startX + m_width; x++)
@@ -50,6 +47,7 @@ public class maskForPattern : MonoBehaviour {
                // print(tex.GetPixel(x, y));
             }
         }
+
 
         //for (int y = (int)metaData.rect.y; y < metaData.rect.y + m_height; y++)//Y轴像素
         //{
@@ -79,7 +77,7 @@ public class maskForPattern : MonoBehaviour {
 
         fileData = File.ReadAllBytes(
             Application.dataPath + "/233.PNG");
-        tex = new Texture2D(80, 80);
+        tex = new Texture2D(m_width, m_height);
 
         tex.LoadImage(fileData);
         //MaterialPropertyBlock prop = new MaterialPropertyBlock();
