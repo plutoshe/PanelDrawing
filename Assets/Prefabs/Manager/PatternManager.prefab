@@ -45,13 +45,43 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Patterns:
   - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 635bcf3e2bd6f1649b465d7d05ab973a, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 14b37485fc37d9b40b6fecb570f6992f, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: c3c2f61bfb4d09e47854498d00981346, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: e5c7cb314d2b83c44962991f1466acf2, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 75be31eb03ecee34eae9b642cb28e1a7, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 73622a64a49e30143afc0b2c9fd4c047, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: dd8d72177d611bf488ae9b84f4662e92, type: 3}
+  - PatternId: 0
     DisplayImage: {fileID: 21300000, guid: df25f9e4ec6292f44a6b6bad21ddde17, type: 3}
   - PatternId: 0
-    DisplayImage: {fileID: 21300000, guid: ec4436db8f0af9845936b5a64d649be7, type: 3}
+    DisplayImage: {fileID: 21300000, guid: 067ff2631ecdc504ca7c3f8203c6b65c, type: 3}
   - PatternId: 0
-    DisplayImage: {fileID: 21300000, guid: 5c6ef4bc6c4a711489161e797040a03a, type: 3}
+    DisplayImage: {fileID: 21300000, guid: f109911d0e9d28a4a9267a6dce00e42d, type: 3}
   - PatternId: 0
-    DisplayImage: {fileID: 21300000, guid: e67965ad0a621194b80dd0ae87a9c89f, type: 3}
+    DisplayImage: {fileID: 21300000, guid: e2a96adcb486cf84799c1cee50aee128, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: ac818623487930641b27038e1cfc8772, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 9dfe05d6e3581064d98af21072663c9b, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 44775383536e3c34eb859f2e44987a1d, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: ef6b054ad73f18243a0252e86e8e08f4, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 515400ee0752ae14d88a5201c3cc5653, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: 0b7e7bc16b67b9a43b81087762359229, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: a6e69250a8bcf2d4382772e3517bca78, type: 3}
+  - PatternId: 0
+    DisplayImage: {fileID: 21300000, guid: e78e36c5a77487c418b35c5743ada649, type: 3}
   patternCollections: []
   currentCollectionID: 0
   PatternPrefab: {fileID: 1631712452416324, guid: 662e16972792d334d9b137bc50d66664,
