@@ -79,35 +79,35 @@ public class captureImage : MonoBehaviour {
 
     void SaveFileInPrinting()
     {
-#if UNITY_EDITOR
+//#if UNITY_EDITOR
         //		temp = "/StreamingAssets/ScreenShot/";
         //var temp = "/ScreenShot/";
         //string path = string.Format("{0:D4}{1:D2}.png", temp, shot_Number.ToString());
         //		filename = Application.dataPath + path;
-        var filename = Application.dataPath + "/1.jpg";
-#else
+        var filename = Application.persistentDataPath + "/1.jpg";
+//#else
  
  
-#if UNITY_ANDROID
-		                temp = "/ScreenShot/";
-		                string path  = string.Format ("{0:D4}{1:D2}.png", temp,shot_Number.ToString());
-		                filename = Application.persistentDataPath + path;
+//#if UNITY_ANDROID
+//		                temp = "/ScreenShot/";
+//		                string path  = string.Format ("{0:D4}{1:D2}.png", temp,shot_Number.ToString());
+//		                filename = Application.persistentDataPath + path;
  
-#endif
+//#endif
  
-#if UNITY_IPHONE
-		                temp = "/Raw/ScreenShot/";
-		                string path  = string.Format ("{0:D4}{1:D2}.png", temp,shot_Number.ToString());
-		                filename = Application.temporaryCachePath + path;
+//#if UNITY_IPHONE
+//		                temp = "/Raw/ScreenShot/";
+//		                string path  = string.Format ("{0:D4}{1:D2}.png", temp,shot_Number.ToString());
+//		                filename = Application.temporaryCachePath + path;
  
-#endif
+//#endif
  
-#if UNITY_STANDALONE_WIN
-		                filename = "Screenshot.png";
-#endif
-#endif
+//#if UNITY_STANDALONE_WIN
+//		                filename = "Screenshot.png";
+//#endif
+//#endif
         print(filename);
-        Utility.SaveFile(filename, Camera.main, transform.Find("DyingPanel").gameObject);
+        Utility.SaveFile(filename, Camera.main, transform.FindDeepChild("DyingPanel").gameObject);
     }
     
 

@@ -20,7 +20,7 @@ public static class WaitFor
 
 public class Combine : MonoBehaviour
 {
-    string resultFile = "C:\\Users\\u1209558\\Documents\\2nd_semester\\SeriousGame\\PanelDrawing\\Assets\\result.jpg";
+    string resultFile;
 
     bool judge(Color color)
     {
@@ -41,15 +41,15 @@ public class Combine : MonoBehaviour
         yield return WaitFor.Frames(1);
         //yield return new WaitForEndOfFrame();
         print("!!!!");
-        var tempFile = "C:\\Users\\u1209558\\Documents\\2nd_semester\\SeriousGame\\PanelDrawing\\Assets\\gg.jpg";
+        var tempFile = Application.persistentDataPath + "gg.jpg";
         Utility.SaveFile(tempFile, GameObject.Find("Main Camera").GetComponent<Camera>(), gameObject);
         var fileData = File.ReadAllBytes(
             tempFile);
         //"/Textures/Background/BGForPreface.png");
 
-        var tex2 = new Texture2D(650, 1134);
+        var tex2 = new Texture2D(650, 562);
         tex2.LoadImage(fileData);
-        var tex1 = new Texture2D(650, 1134);
+        var tex1 = new Texture2D(650, 562);
         bool loadSuccess = true;
         try
         {
@@ -66,7 +66,7 @@ public class Combine : MonoBehaviour
         Color transparent = new Color(1, 1, 1, 0);
         for (int x = 0; x < 650; x++)
         {
-            for (int y = 0; y < 1134; y++)
+            for (int y = 0; y < 562; y++)
             {
                 float ta = tex2.GetPixel(x, y).a;
                 if (loadSuccess)
@@ -122,8 +122,16 @@ public class Combine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        resultFile = Application.persistentDataPath + "result.jpg";
+        BoardManager.Instance.tempOpen++;
+        switch (BoardManager.Instance.tempOpen)
+        {
+            case 1: transform.Find("Image1").gameObject.SetActive(true); break;
+            case 2: transform.Find("Image1").gameObject.SetActive(true); transform.Find("Image2").gameObject.SetActive(true); break;
+            case 3: transform.Find("Image1").gameObject.SetActive(true); transform.Find("Image2").gameObject.SetActive(true); transform.Find("Image3").gameObject.SetActive(true); break;
 
-        StartCoroutine(AdjustTransInTheEndOfFrame());
+        }
+        //StartCoroutine(AdjustTransInTheEndOfFrame());
     }
 
     // Update is called once per frame

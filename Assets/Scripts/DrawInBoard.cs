@@ -15,6 +15,14 @@ public class DrawInBoard : MonoBehaviour
 
     void Start()
     {
+        BoardManager.Instance.tempOpen1++;
+        switch (BoardManager.Instance.tempOpen1)
+        {
+            case 1: transform.Find("Image1").gameObject.SetActive(true); break;
+            case 2:transform.Find("Image2").gameObject.SetActive(true); break;
+            case 3:transform.Find("Image3").gameObject.SetActive(true); break;
+
+        }
         currentColor = Color.red;
         currentColor.a = 1f;
         i = 0;
@@ -27,18 +35,18 @@ public class DrawInBoard : MonoBehaviour
         yMax = rectPos.y + (1 - rect.pivot.y) * rect.rect.height;
         DyingPanelMiddleX = (xMin + xMax) / 2;
         //test CreateBoard
-        PatternCollection a = new PatternCollection();
-        PatternItemInCollection g = new PatternItemInCollection();
-        g.originSize = new Vector2(600, 800);
-        g.localPos = new Vector3(8.7f, 7.7f, 0);
-        g.PatternId = 4;
-        a.patterns.Add(1, g);
-        BoardManager.Instance.CreateBoard(a);
-        if (BoardManager.Instance.GetCurrentBoard().coll != null)
-            BoardManager.Instance.DrawCollectionOnBoard(
-                transform,
-                BoardManager.Instance.GetCurrentBoard().coll, 
-                false);
+        //PatternCollection a = new PatternCollection();
+        //PatternItemInCollection g = new PatternItemInCollection();
+        //g.originSize = new Vector2(600, 800);
+        //g.localPos = new Vector3(8.7f, 7.7f, 0);
+        //g.PatternId = 4;
+        //a.patterns.Add(1, g);
+        //BoardManager.Instance.CreateBoard(a);
+        //if (BoardManager.Instance.GetCurrentBoard() != null)
+        //    BoardManager.Instance.DrawCollectionOnBoard(
+        //        transform,
+        //        BoardManager.Instance.GetCurrentBoard().coll, 
+        //        false);
 
 
     }

@@ -16,6 +16,8 @@ public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHand
     public Vector3 localPos;
     public int PatternId;
     public Material outlineMaterial;
+    public Vector3 scale;
+    public Vector3 rotation;
 
     bool CouldDrag()
     {
@@ -43,8 +45,8 @@ public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHand
         originSize = new Vector2(p.originSize.x, p.originSize.y);
         draggable = p.draggable;
         Archetype = p.Archetype;
-    
-    
+        rotation = p.rotation;
+        scale = p.scale;
     }
 
     public void OnBeginDrag(PointerEventData eventData)

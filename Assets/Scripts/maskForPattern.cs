@@ -15,7 +15,7 @@ public class maskForPattern : MonoBehaviour {
     void Start () {
 
         var fileData = File.ReadAllBytes(
-            Application.dataPath + "/1.jpg");
+            Application.persistentDataPath + "/1.jpg");
         //"/Textures/Background/BGForPreface.png");
         var tex = new Texture2D(650, 1134);
 
