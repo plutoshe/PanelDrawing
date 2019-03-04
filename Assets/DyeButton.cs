@@ -18,7 +18,7 @@ public class DyeButton : MonoBehaviour {
     public void UpdateColor()
     {
         print(GetComponent<Image>().color);
-        transform.parent.GetComponent<DrawInBoard>().ChangeColor(
+        transform.parent.Find("DyingPanel").GetComponent<DrawInBoard>().ChangeColor(
             GetComponent<Image>().color
             );
     }

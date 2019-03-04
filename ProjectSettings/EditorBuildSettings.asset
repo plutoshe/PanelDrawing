@@ -21,7 +21,7 @@ EditorBuildSettings:
     path: Assets/Scenes/AfterDrawing.unity
     guid: 3aa27a389165af4438daa7e371d07c6f
   - enabled: 1
-    path: Assets/Scenes/CreateBaord.unity
+    path: Assets/Scenes/PrintingBoard.unity
     guid: 9d9a7f53c0bad044286c9919ecf66de7
   - enabled: 1
     path: Assets/Scenes/Preface.unity

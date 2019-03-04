@@ -92,6 +92,15 @@ public class PatternCollectionManager : MonoBehaviour {
         return new Vector3(minX, maxY, z);
     }
 
+    public Vector3 GetBottomRightOfCanvasObject(GameObject obj)
+    {
+        float maxX = obj.GetComponent<RectTransform>().position.x + obj.GetComponent<RectTransform>().rect.xMax;
+        float minY = obj.GetComponent<RectTransform>().position.y + obj.GetComponent<RectTransform>().rect.yMin;
+        float z = obj.GetComponent<RectTransform>().position.z;
+
+        return new Vector3(maxX, minY, z);
+    }
+
     public void DrawCollectionOnPanel(Transform panel, PatternCollection collection, bool editable)
     {
         while (panel.childCount > 0) Destroy(panel.GetChild(0).gameObject);
