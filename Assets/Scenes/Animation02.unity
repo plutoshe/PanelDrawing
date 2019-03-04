@@ -500,6 +500,7 @@ GameObject:
   m_Component:
   - component: {fileID: 626305538}
   - component: {fileID: 626305539}
+  - component: {fileID: 626305540}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -588,6 +589,21 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &626305540
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626305537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a44efab26883341b042bc2c063663e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TB: {fileID: 626305539}
+  again: {fileID: 425183961}
+  videoTime: 21
 --- !u!1 &874857791
 GameObject:
   m_ObjectHideFlags: 0
@@ -706,10 +722,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a3a55ac1b7cc814ebb7fae438decc71, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  videoClips:
-  - {fileID: 32900000, guid: 54081532c0e5c2a409cb904fced212b5, type: 3}
-  - {fileID: 32900000, guid: 22c479f92148c5d49b558c814faf0c86, type: 3}
-  - {fileID: 32900000, guid: 0e4c2d4c2b7f3db48bb0d14b115bff0d, type: 3}
 --- !u!1 &1077663595
 GameObject:
   m_ObjectHideFlags: 0
