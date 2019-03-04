@@ -26,6 +26,20 @@ public class DrawInBoard : MonoBehaviour
         yMin = rectPos.y - rect.pivot.y * rect.rect.height;
         yMax = rectPos.y + (1 - rect.pivot.y) * rect.rect.height;
         DyingPanelMiddleX = (xMin + xMax) / 2;
+        //test CreateBoard
+        PatternCollection a = new PatternCollection();
+        PatternItemInCollection g = new PatternItemInCollection();
+        g.originSize = new Vector2(600, 800);
+        g.localPos = new Vector3(8.7f, 7.7f, 0);
+        g.PatternId = 4;
+        a.patterns.Add(1, g);
+        BoardManager.Instance.CreateBoard(a);
+        if (BoardManager.Instance.GetCurrentBoard().coll != null)
+            BoardManager.Instance.DrawCollectionOnBoard(
+                transform,
+                BoardManager.Instance.GetCurrentBoard().coll, 
+                false);
+
 
     }
     public static Rect RectTransformToScreenSpace(RectTransform transform)
@@ -60,8 +74,8 @@ public class DrawInBoard : MonoBehaviour
                 currentColor.a = 0.5f;
                 line.startColor = currentColor;
                 line.endColor = currentColor;//new Vector4(0.3f, 0.4f, 0.6f, 0.3f);
-                line.startWidth = 8.45f;
-                line.endWidth = 8.45f;
+                line.startWidth = 4.38f;
+                line.endWidth = 4.38f;
                 clone.SetActive(true);
                 i = 0;
             }

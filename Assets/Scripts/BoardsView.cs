@@ -22,7 +22,7 @@ public class BoardsView : MonoBehaviour {
             var rt = currentBoard.GetComponent<RectTransform>();
             rt.sizeDelta = PanelSize;
             currentBoard.SetActive(true);
-            StartCoroutine(UpdateBoard(currentBoard.transform, PatternCollectionManager.Instance.patternCollections[i]));
+            StartCoroutine(UpdateBoard(currentBoard.transform, BoardManager.Instance.Boards[i].coll));
         }
     }
 	

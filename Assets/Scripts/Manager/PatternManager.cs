@@ -64,7 +64,7 @@ public class PatternManager : MonoBehaviour {
 
         PatternCollectionManager.Instance.DrawCollectionOnPanel(
             PatternPaintingPanel,
-            PatternCollectionManager.Instance.patternCollections[PatternCollectionManager.Instance.currentCollectionID], true);
+            PatternCollectionManager.Instance.patternCollections[PatternCollectionManager.Instance.currentCollectionID], false);
         
 
         DeleteButton.GetComponent<Button>().onClick.AddListener(DeleteSelectedItemAction);

@@ -11,6 +11,16 @@ public class PatternCollection
     {
         patterns = new Dictionary<int, PatternItemInCollection>();
     }
+    public void Set(PatternCollection p)
+    {
+        patterns.Clear();
+        foreach (var kvs in p.patterns)
+        {
+            var newPattern = new PatternItemInCollection();
+            newPattern.Set(kvs.Value);
+            patterns.Add(kvs.Key, newPattern);
+        }
+    }
 
     void Start()
     {

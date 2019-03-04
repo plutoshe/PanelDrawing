@@ -83,23 +83,13 @@ public class PatternCollectionManager : MonoBehaviour {
         currentCollectionID = patternCollections.Count - 1;
     }
 
-    public Vector3 GetTopLeftOfCanvasObject(GameObject obj)
+    public PatternCollection GetCurrentCollection()
     {
-        float minX = obj.GetComponent<RectTransform>().position.x + obj.GetComponent<RectTransform>().rect.xMin;
-        float maxY = obj.GetComponent<RectTransform>().position.y + obj.GetComponent<RectTransform>().rect.yMax;
-        float z = obj.GetComponent<RectTransform>().position.z;
-
-        return new Vector3(minX, maxY, z);
-    }
-
-    public Vector3 GetBottomRightOfCanvasObject(GameObject obj)
-    {
-        float maxX = obj.GetComponent<RectTransform>().position.x + obj.GetComponent<RectTransform>().rect.xMax;
-        float minY = obj.GetComponent<RectTransform>().position.y + obj.GetComponent<RectTransform>().rect.yMin;
-        float z = obj.GetComponent<RectTransform>().position.z;
-
-        return new Vector3(maxX, minY, z);
-    }
+        if (currentCollectionID >= 0 && currentCollectionID < patternCollections.Count)
+            return patternCollections[currentCollectionID];
+        else
+            return null;
+     }
 
     public void DrawCollectionOnPanel(Transform panel, PatternCollection collection, bool editable)
     {

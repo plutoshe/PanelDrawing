@@ -14,6 +14,23 @@ public class Utility
         yMax = Mathf.Round(rectPos.y + (1 - rect.pivot.y) * rect.rect.height);
     }
 
+    public static void GetTopLeft(Transform obj, Camera camera, out Vector2 topleft)
+    {
+        float xMin, yMin, xMax, yMax;
+        GetBorder(obj, Camera.main, out xMin, out xMax, out yMin, out yMax);
+        topleft.x = xMin;
+        topleft.y = yMin;
+    }
+
+    public static void GetDistance(Transform obj1, Transform axis, Camera camera, out Vector2 dis)
+    {
+        float xMin, yMin, xMax, yMax;
+        GetBorder(obj1, Camera.main, out xMin, out xMax, out yMin, out yMax);
+        float pxMin, pyMin, pxMax, pyMax;
+        GetBorder(axis, Camera.main, out pxMin, out pxMax, out pyMin, out pyMax);
+        dis = new Vector2(xMin - pxMin, yMin - pyMin);
+    }
+
     public static void SaveFile(string filename, Camera earthCamera, GameObject target)
     {
         //Debug.Log("保存图片的路径`1" + filename);
