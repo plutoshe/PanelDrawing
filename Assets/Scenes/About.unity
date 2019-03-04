@@ -279,7 +279,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &482911515
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -759,8 +759,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 12, y: -134}
-  m_SizeDelta: {x: 501, y: 669.9}
+  m_AnchoredPosition: {x: 5, y: -100}
+  m_SizeDelta: {x: 525.2, y: 1192.9}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1091212399
 MonoBehaviour:
@@ -795,7 +795,14 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: THIS GAME IS ABOUT >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+  m_Text: Screen printing is a printing technique whereby a mesh is used to transfer
+    ink onto a substrate, except in areas made impermeable to the ink by a blocking
+    stencil. A blade or squeegee is moved across the screen to fill the open mesh
+    apertures with ink, and a reverse stroke then causes the screen to touch the substrate
+    momentarily along a line of contact. This causes the ink to wet the substrate
+    and be pulled out of the mesh apertures as the screen springs back after the blade
+    has passed. One color is printed at a time, so several screens can be used to
+    produce a multicolored image or design.
 --- !u!222 &1091212400
 CanvasRenderer:
   m_ObjectHideFlags: 0
