@@ -15,14 +15,7 @@ public class DrawInBoard : MonoBehaviour
 
     void Start()
     {
-        BoardManager.Instance.tempOpen1++;
-        switch (BoardManager.Instance.tempOpen1)
-        {
-            case 1: transform.Find("Image1").gameObject.SetActive(true); break;
-            case 2:transform.Find("Image2").gameObject.SetActive(true); break;
-            case 3:transform.Find("Image3").gameObject.SetActive(true); break;
 
-        }
         currentColor = Color.red;
         currentColor.a = 1f;
         i = 0;
@@ -35,31 +28,47 @@ public class DrawInBoard : MonoBehaviour
         yMax = rectPos.y + (1 - rect.pivot.y) * rect.rect.height;
         DyingPanelMiddleX = (xMin + xMax) / 2;
         //test CreateBoard
-        //PatternCollection a = new PatternCollection();
-        //PatternItemInCollection g = new PatternItemInCollection();
-        //g.originSize = new Vector2(600, 800);
-        //g.localPos = new Vector3(8.7f, 7.7f, 0);
-        //g.PatternId = 4;
-        //a.patterns.Add(1, g);
-        //BoardManager.Instance.CreateBoard(a);
-        //if (BoardManager.Instance.GetCurrentBoard() != null)
-        //    BoardManager.Instance.DrawCollectionOnBoard(
-        //        transform,
-        //        BoardManager.Instance.GetCurrentBoard().coll, 
-        //        false);
+        PatternCollection a = new PatternCollection();
+        PatternItemInCollection g = new PatternItemInCollection();
+        g.originSize = new Vector2(600, 1000);
+        g.localPos = new Vector3(-17.3f, 4.5f, 0);
+        g.PatternId = 4;
+        a.patterns.Add(1, g);
+
+        g = new PatternItemInCollection();
+        g.originSize = new Vector2(600, 1000);
+        g.localPos = new Vector3(231.1f, 306.2f, 0);
+        g.PatternId = 4;
+        a.patterns.Add(1, g);
+        g = new PatternItemInCollection();
+        g.originSize = new Vector2(600, 1000);
+        g.localPos = new Vector3(-245f, -317.5f, 0);
+        g.PatternId = 4;
+        a.patterns.Add(1, g);
+        g = new PatternItemInCollection();
+        g.originSize = new Vector2(600, 1000);
+        g.localPos = new Vector3(-241f, 316.5f, 0);
+        g.PatternId = 4;
+        a.patterns.Add(1, g);
+        g = new PatternItemInCollection();
+        g.originSize = new Vector2(600, 1000);
+        g.localPos = new Vector3(237.2f, -340.3f, 0);
+        g.PatternId = 4;
+        a.patterns.Add(1, g);
+
+        BoardManager.Instance.CreateBoard(a);
+        if (BoardManager.Instance.GetCurrentBoard() != null)
+        {
+            print("!!!");
+            BoardManager.Instance.DrawCollectionOnBoard(
+                transform,
+                BoardManager.Instance.GetCurrentBoard().coll,
+                false);
+        }
 
 
     }
-    public static Rect RectTransformToScreenSpace(RectTransform transform)
-    {
-        Vector2 size = Vector2.Scale(transform.rect.size, transform.lossyScale);
-        return new Rect((Vector2)transform.position - (size * 0.5f), size);
-    }
-    private void OnGUI()
-    {
-        //print("Event mous" + Event.current.mousePosition);
-        //Rect rt = GUILayoutUtility.GetRect(, GUIStyle.none);
-    }
+
 
     bool posInDyingPanel(Vector3 pos)
     { 

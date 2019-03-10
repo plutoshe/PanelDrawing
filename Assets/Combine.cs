@@ -42,7 +42,7 @@ public class Combine : MonoBehaviour
         //yield return new WaitForEndOfFrame();
         print("!!!!");
         var tempFile = Application.persistentDataPath + "gg.jpg";
-        Utility.SaveFile(tempFile, GameObject.Find("Main Camera").GetComponent<Camera>(), gameObject);
+        FileUtility.SaveFile(tempFile, GameObject.Find("Main Camera").GetComponent<Camera>(), gameObject);
         var fileData = File.ReadAllBytes(
             tempFile);
         //"/Textures/Background/BGForPreface.png");
@@ -122,25 +122,25 @@ public class Combine : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        resultFile = Application.persistentDataPath + "result.jpg";
-        BoardManager.Instance.tempOpen++;
-        switch (BoardManager.Instance.tempOpen)
-        {
-            case 1: transform.Find("Image1").gameObject.SetActive(true); break;
-            case 2: transform.Find("Image1").gameObject.SetActive(true); transform.Find("Image2").gameObject.SetActive(true); break;
-            case 3: transform.Find("Image1").gameObject.SetActive(true); transform.Find("Image2").gameObject.SetActive(true); transform.Find("Image3").gameObject.SetActive(true); break;
+        //resultFile = Application.persistentDataPath + "result.jpg";
+        //BoardManager.Instance.tempOpen++;
+        //switch (BoardManager.Instance.tempOpen)
+        //{
+        //    case 1: transform.Find("Image1").gameObject.SetActive(true); break;
+        //    case 2: transform.Find("Image1").gameObject.SetActive(true); transform.Find("Image2").gameObject.SetActive(true); break;
+        //    case 3: transform.Find("Image1").gameObject.SetActive(true); transform.Find("Image2").gameObject.SetActive(true); transform.Find("Image3").gameObject.SetActive(true); break;
 
-        }
+        //}
         //StartCoroutine(AdjustTransInTheEndOfFrame());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            var tempFile = "C:\\Users\\u1209558\\Documents\\2nd_semester\\SeriousGame\\PanelDrawing\\Assets\\gg1.jpg";
-            Utility.SaveFile(tempFile, GameObject.Find("Main Camera").GetComponent<Camera>(), gameObject);
-        }
+        //if (Input.GetKeyDown(KeyCode.P))
+        //{
+        //    var tempFile = "C:\\Users\\u1209558\\Documents\\2nd_semester\\SeriousGame\\PanelDrawing\\Assets\\gg1.jpg";
+        //    Utility.SaveFile(tempFile, GameObject.Find("Main Camera").GetComponent<Camera>(), gameObject);
+        //}
     }
 }

@@ -2,66 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
-public class Utility
-{
-    public static void GetBorder(Transform obj, Camera camera, out float xMin, out float xMax, out float yMin, out float yMax)
-    {
-        RectTransform rect = obj.GetComponent<RectTransform>();
-        Vector3 rectPos = camera.WorldToScreenPoint(obj.transform.position);
-        xMin = Mathf.Round(rectPos.x - rect.pivot.x * rect.rect.width);
-        xMax = Mathf.Round(rectPos.x + (1 - rect.pivot.x) * rect.rect.width);
-        yMin = Mathf.Round(rectPos.y - rect.pivot.y * rect.rect.height);
-        yMax = Mathf.Round(rectPos.y + (1 - rect.pivot.y) * rect.rect.height);
-    }
 
-    public static void GetTopLeft(Transform obj, Camera camera, out Vector2 topleft)
-    {
-        float xMin, yMin, xMax, yMax;
-        GetBorder(obj, Camera.main, out xMin, out xMax, out yMin, out yMax);
-        topleft.x = xMin;
-        topleft.y = yMin;
-    }
-
-    public static void GetDistance(Transform obj1, Transform axis, Camera camera, out Vector2 dis)
-    {
-        float xMin, yMin, xMax, yMax;
-        GetBorder(obj1, Camera.main, out xMin, out xMax, out yMin, out yMax);
-        float pxMin, pyMin, pxMax, pyMax;
-        GetBorder(axis, Camera.main, out pxMin, out pxMax, out pyMin, out pyMax);
-        dis = new Vector2(xMin - pxMin, yMin - pyMin);
-    }
-
-    public static void SaveFile(string filename, Camera earthCamera, GameObject target)
-    {
-        //Debug.Log("保存图片的路径`1" + filename);
-        RenderTexture renderTexture;
-        //深度问题depth
-
-        renderTexture = new RenderTexture(Screen.width, Screen.height, 24);
-        earthCamera.targetTexture = renderTexture;
-        earthCamera.Render();
-        var targetRect = target.GetComponent<RectTransform>();
-        Texture2D myTexture2D = new Texture2D((int)targetRect.rect.width, (int)targetRect.rect.height);
-        RenderTexture.active = renderTexture;
-        float xMin, yMin, xMax, yMax;
-        GetBorder(target.transform, earthCamera, out xMin, out xMax, out yMin, out yMax);
-        Debug.Log(xMin + ","+ xMax+","+ yMin+","+ yMax);
-        myTexture2D.ReadPixels(new Rect(xMin, yMin, targetRect.rect.width, targetRect.rect.height), 0, 0);
-        myTexture2D.Apply();
-        byte[] bytes = myTexture2D.EncodeToJPG();
-        myTexture2D.Compress(true);
-        myTexture2D.Apply();
-        RenderTexture.active = null;
-
-
-        System.IO.File.WriteAllBytes(filename, bytes);
-        //Debug.Log (string.Format ("截屏了一张图片: {0}", filename));  
-        //Debug.Log("保存图片的路径" + filename);
-
-        earthCamera.targetTexture = null;
-
-    }
-}
 public class captureImage : MonoBehaviour {
 
     public Camera mainCam; //待截图的目标摄像机
@@ -107,7 +48,7 @@ public class captureImage : MonoBehaviour {
 //#endif
 //#endif
         print(filename);
-        Utility.SaveFile(filename, Camera.main, transform.FindDeepChild("DyingPanel").gameObject);
+        FileUtility.SaveFile(filename, Camera.main, transform.FindDeepChild("DyingPanel").gameObject);
     }
     
 

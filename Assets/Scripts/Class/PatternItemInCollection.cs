@@ -17,7 +17,7 @@ public class PatternItemInCollection : MonoBehaviour, IDragHandler, IEndDragHand
     public int PatternId;
     public Material outlineMaterial;
     public Vector3 scale;
-    public Vector3 rotation;
+    public Quaternion rotation;
 
     bool CouldDrag()
     {

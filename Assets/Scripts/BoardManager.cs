@@ -12,8 +12,7 @@ public class Board
 public class BoardManager : MonoBehaviour {
     public List<Board> Boards;
     public int currentBoardID = -1;
-    public int tempOpen = 0;
-    public int tempOpen1 = 0;
+
     private static BoardManager _instance;
     public static BoardManager Instance
     {
@@ -36,29 +35,38 @@ public class BoardManager : MonoBehaviour {
 
             var xRatio = ((RectTransform)panel).rect.size.x / kv.Value.originSize.x;
             var yRatio = ((RectTransform)panel).rect.size.y / kv.Value.originSize.y;
-
+            var r = panel.GetComponent<RectTransform>().rect;
             var newPattern = Instantiate(PatternCollectionManager.Instance.PatternPrefab);// kv.Value
-            //newPattern.transform.SetParent(panel, true);
+            newPattern.transform.SetParent(panel, true);
             var posOnPanel = new Vector3(
                 xRatio * kv.Value.localPos.x,
                 yRatio * kv.Value.localPos.y,
                 kv.Value.localPos.z);
+            newPattern.transform.localScale = new Vector3(1, 1, 1);
             print("Pattern Creation~~~~~~");
             print(kv.Value.localPos);
             print(posOnPanel);
             //print(Camera.main.WorldToViewportPoint(panel.position));
+            posOnPanel.y = -posOnPanel.y;
+            Vector2 topleft = new Vector2();
+            SpaceUtility.GetMinXMinY(panel, Camera.main, out topleft);
+            var topleft3 = new Vector3(topleft.x, topleft.y);
 
-
-
+            //print(Camera.main.WorldToScreenPoint(panel.position));
+            //print(posOnPanel +
+            //         Camera.main.WorldToScreenPoint(panel.position));
+            //print(Camera.main.ScreenToWorldPoint(
+            //         posOnPanel +
+            //         topleft3));
+            
             newPattern.transform.position =
-                Camera.main.ViewportToWorldPoint(
-                posOnPanel +
-                Camera.main.WorldToViewportPoint(panel.position));
+                 Camera.main.ScreenToWorldPoint(posOnPanel +
+                     topleft3);
             newPattern.GetComponent<PatternItemInCollection>().Set(kv.Value);
-            print(newPattern.transform.position);
+            //print(newPattern.transform.position);
             newPattern.SetActive(true);
-
-
+            //print(panel.transform.position);
+            print(newPattern.transform.position);
             newPattern.GetComponent<Image>().sprite =
                 PatternCollectionManager.Instance.Patterns[kv.Value.PatternId].DisplayImage;
 
@@ -92,7 +100,10 @@ public class BoardManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+		if (Input.GetMouseButtonDown(0))
+        {
+            print(Input.mousePosition);
+        }
 	}
 
     public void SelectionForCurrentBoard(DrawingBoard b)

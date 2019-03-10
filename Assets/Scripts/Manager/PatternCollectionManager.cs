@@ -112,11 +112,12 @@ public class PatternCollectionManager : MonoBehaviour {
             print("Pattern Creation~~~~~~");
             print(kv.Value.localPos);
             print(posOnPanel);
-            print(Camera.main.WorldToViewportPoint(panel.position));
+
+            newPattern.transform.localScale = kv.Value.scale;
+            newPattern.transform.rotation = kv.Value.rotation;
+            
             newPattern.transform.position =
-                Camera.main.ViewportToWorldPoint(
-                posOnPanel +
-                Camera.main.WorldToViewportPoint(panel.position));
+                posOnPanel + VectorUtility.ConvertFromVector2(SpaceUtility.GetMinXMinY(panel));
             newPattern.GetComponent<PatternItemInCollection>().Set(kv.Value);
             print(newPattern.transform.position);
             newPattern.SetActive(true);

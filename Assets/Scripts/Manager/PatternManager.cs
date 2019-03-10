@@ -103,19 +103,7 @@ public class PatternManager : MonoBehaviour {
         return RectIntercept(PatternPaintingPanel, patternDrawable.transform);
     }
 
-    //bool InDeletion(GameObject patternDrawable)
-    //{
-    //    return RectIntercept(DeleteButton, patternDrawable.transform);
-    //}
-
-    Vector3 GetTopLeftOfCanvasObject(GameObject obj)
-    {
-        float minX = obj.GetComponent<RectTransform>().position.x + obj.GetComponent<RectTransform>().rect.xMin;
-        float maxY = obj.GetComponent<RectTransform>().position.y + obj.GetComponent<RectTransform>().rect.yMax;
-        float z = obj.GetComponent<RectTransform>().position.z;
-
-        return new Vector3(minX, maxY, z);
-    }
+    
 
     public void DrawPaintingPanel(GameObject patternDrawable)
     {
@@ -127,10 +115,16 @@ public class PatternManager : MonoBehaviour {
             newPattern.GetComponent<Image>().sprite = patternDrawable.GetComponent<Image>().sprite;
             newPattern.GetComponent<PatternItemInCollection>().IsAchetype = false;
             newPattern.GetComponent<PatternItemInCollection>().originSize = ((RectTransform)PatternPaintingPanel.transform).rect.size;
-            newPattern.GetComponent<PatternItemInCollection>().localPos = 
-                Camera.main.WorldToViewportPoint(newPattern.transform.position) - 
-                Camera.main.WorldToViewportPoint(PatternPaintingPanel.position); //newPattern.transform.localPosition;
+
+            print(SpaceUtility.GetMinXMinY(newPattern.transform));
+            print(SpaceUtility.GetMinXMinY(PatternPaintingPanel));
+
+            newPattern.GetComponent<PatternItemInCollection>().localPos =
+               SpaceUtility.GetMinXMinY(newPattern.transform) - SpaceUtility.GetMinXMinY(PatternPaintingPanel); //newPattern.transform.localPosition;
             
+
+            newPattern.GetComponent<PatternItemInCollection>().scale = newPattern.transform.localScale;
+
             newPattern.GetComponent<PatternItemInCollection>().PatternId = patternDrawable.GetComponent<PatternItemInCollection>().Archetype.GetComponent<PatternItem>().attr.PatternId;
             newPattern.transform.SetParent(PatternPaintingPanel, true);
             newPattern.name = "Drawing";
@@ -159,8 +153,10 @@ public class PatternManager : MonoBehaviour {
     public void FinishEditingAction()
     {
         selectedPatternItem.GetComponent<PatternItemInCollection>().localPos =
-                Camera.main.WorldToViewportPoint(selectedPatternItem.transform.position) -
-                Camera.main.WorldToViewportPoint(PatternPaintingPanel.position);
+        SpaceUtility.GetMinXMinY(selectedPatternItem.transform) -
+            SpaceUtility.GetMinXMinY(PatternPaintingPanel);
+        selectedPatternItem.transform.GetComponent<PatternItemInCollection>().scale = selectedPatternItem.transform.localScale;
+        selectedPatternItem.transform.GetComponent<PatternItemInCollection>().rotation = selectedPatternItem.transform.rotation;
         PatternCollectionManager.Instance.UpdateCurrentCollection(selectedPatternItem.gameObject);
         selectedPatternItem.transform.GetComponent<PatternItemInCollection>().OnUnSelection();
         selectedPatternItem = null;
@@ -204,7 +200,7 @@ public class PatternManager : MonoBehaviour {
                 return;
             }
             Touch touch = Input.GetTouch(0);
-            var currentPosition = Camera.main.WorldToViewportPoint(selectedPatternItem.position);
+            var currentPosition = selectedPatternItem.position;
             var currentxyPostion = new Vector2(currentPosition.x, currentPosition.y);
             float distance = Vector2.SignedAngle(
                 touch.position - currentxyPostion, 
@@ -212,10 +208,8 @@ public class PatternManager : MonoBehaviour {
             selectedPatternItem.Rotate(Vector3.forward * distance * 0.08f, Space.World);
         }
 
-        //多点触摸, 放大缩小  
         Touch newTouch2 = Input.GetTouch(1);
 
-        //第2点刚开始接触屏幕, 只记录，不做处理  
         if (newTouch2.phase == TouchPhase.Began)
         {
             oldTouch2 = newTouch2;
@@ -223,14 +217,11 @@ public class PatternManager : MonoBehaviour {
             return;
         }
 
-        //计算老的两点距离和新的两点间距离，变大要放大模型，变小要缩放模型  
         float oldDistance = Vector2.Distance(oldTouch1.position, oldTouch2.position);
         float newDistance = Vector2.Distance(newTouch1.position, newTouch2.position);
 
-        //两个距离之差，为正表示放大手势， 为负表示缩小手势  
         float offset = newDistance - oldDistance;
 
-        //放大系数
         float scaleFactor = offset / 100f;
         Vector3 localScale = selectedPatternItem.localScale;
         float minS = 0.1f, maxS = 10f;
